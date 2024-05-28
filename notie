@@ -1,0 +1,152 @@
+Usermod -g groepnaam gebruiker
+
+Zypper search samba om te kijken of het geinstaleerd is
+
+
+
+Setacl -m g:se3a:r-x SE3B
+
+G = groep
+
+
+
+se3a = groep SE3B = map
+
+
+
+
+
+
+
+Apache
+
+
+
+Systemctl start apache2
+
+Cd /srv/www/
+
+Ls
+
+Mkdir vhost
+
+Cd vhost/
+
+Ls
+
+Mkdir simon.nl timo.com
+
+Ls
+
+Vi simon.nl/index.html
+
+Je kan code opzoeken voor website html template w3
+
+Veder met code: Tree
+
+Cd /etc/apache2/vhosts.d/
+
+Cp vhost.template simon.conf
+
+Cp vhost.template timo.conf
+
+Vi simon.conf
+
+
+
+Esc :1,$ s/dummy-host.exemple.com/simon.nl/g
+
+
+
+Ip add
+
+
+
+Copy adress
+
+
+
+Vi /etc/host
+
+Ip adress 3 keer plekken
+
+192.168.0.0 simon.nl 
+
+192.168.0.0 timo.nl
+
+
+
+Systemctl restart apache.service
+
+
+
+Back up maken
+
+
+
+Cd /home (begin daar altijd)
+
+Cd /tmp/
+
+Mkdir backup
+
+Cd /home
+
+Vi backup.sh
+
+
+
+rsync -av /home/SE3A /tmp/backup
+
+rsync -av /home/SE3B /tmp/backup
+
+
+
+Chmod +x backup.sh
+
+./backup.sh
+
+
+
+Automatische backup
+
+Crontab -e
+
+
+
+*****
+
+0 15 * * * is om 3 uur
+
+0 0 * * *is 12 uur nacht
+
+eerste ster is minuut van 0 tot 60
+*Minuut 0 60
+
+**Uren 23
+
+***dag van de maand 30
+
+****  maand 12
+
+*****dag van de week
+
+*/1 **** om per minuut backup te maken
+
+
+
+7 10 24 5 /home/backup.sh >> /home/logfiles
+
+
+
+Hierboven alles aan elkaar
+
+
+
+
+
+Cd /home
+
+Ls
+
+Cat logfiles

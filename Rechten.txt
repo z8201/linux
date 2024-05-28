@@ -1,0 +1,13 @@
+user   group   other
+rwx      rwx    rwx
+
+
+0 No_Permission
+1  x 
+2  w 
+4  r
+
+770
+
+
+

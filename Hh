@@ -1,0 +1,71 @@
+ChatGPT opdracht 2
+
+### Opdracht 2: Onderhoud
+
+#### Situatie
+Bij opdracht 1 heb je o.a. share(s) aangemaakt. De opdrachtgever wil weten wat de performance naar de share(s) is en tevens maakt de opdrachtgever zich zorgen over de veiligheid van de data die op de Linux-server komt te staan. Daarom wil de opdrachtgever dat je een aantal tests uitvoert en tevens wat beheerswerkzaamheden doet.
+
+#### Opdracht
+Voer de volgende beheerwerkzaamheden uit:
+
+1. **Installeer de bij de bijlages te vinden LAN_SpeedTest_Setup.exe op de Windows VM.**
+   - **Actie:** Download en installeer `LAN_SpeedTest_Setup.exe` op je Windows VM.
+
+2. **Bepaal met behulp van de bij 1. geïnstalleerde LAN_SpeedTest de performance op de door jou gemaakte share(s).**
+   - **Actie:** Voer de performance test uit op de shares die je eerder hebt aangemaakt.
+   - **Screenshot:** Maak hiervan screenshots en plaats deze in **Bijlage 2.1. Screenshots performance**.
+
+3. **Om de security te checken op de Linux-server, installeer en update je de virusscanner ClamAV via de CLI.**
+   - **Acties:**
+     1. Installeer ClamAV met `zypper install clamav`.
+     2. Update de virusdatabase met `freshclam`.
+     3. Voer een scan uit van de shares en home-mappen met `clamscan -r /srv/samba` en `clamscan -r /home`.
+     4. Maak screenshots van de scanresultaten.
+   - **Screenshot:** Plaats deze screenshots in **Bijlage 2.2. Screenshots security**.
+
+4. **Schrijf een Linux-script dat een backup maakt van alle homes en shares en zorg ervoor dat dit script dagelijks wordt uitgevoerd.**
+   - **Acties:**
+     1. Schrijf een script `backup.sh` met de inhoud:
+       ```bash
+       #!/bin/bash
+       rsync -av /home /srv/samba /path/to/backup/directory
+       ```
+     2. Maak het script uitvoerbaar met `chmod +x backup.sh`.
+     3. Plan het script in de crontab voor dagelijkse uitvoering:
+       ```bash
+       crontab -e
+       ```
+       Voeg toe:
+       ```bash
+       0 2 * * * /path/to/backup.sh
+       ```
+   - **Screenshot:** Plaats screenshots van het script, het bewijs van dagelijks uitvoeren van het script en de uitvoer van het script in **Bijlage 2.3. Bewijs backup script**.
+
+5. **Wijzig de rechten op de shares volgens de voorgestelde wijzigingen.**
+   - **Acties:**
+     1. De makelaars moeten alleen leesrechten op de share van de secretaressen krijgen:
+       ```bash
+       setfacl -m g:makelaars:rx /srv/samba/secretariaat
+       ```
+     2. De secretaressen moeten alleen leesrechten op de share van de makelaars krijgen:
+       ```bash
+       setfacl -m g:secretariaat:rx /srv/samba/makelaars
+       ```
+
+6. **Voer de in punt 5 voorgestelde wijzigingen uit.**
+   - **Actie:** Zorg ervoor dat de voorgestelde wijzigingen correct worden uitgevoerd.
+
+7. **Documenteer de wijzigingen in Bijlage 2.4. Wijzigingen rechten shares.**
+   - **Actie:** Noteer de wijzigingen in de rechten op de shares en plaats deze in **Bijlage 2.4**.
+
+#### Resultaat
+Als resultaat van deze opdracht lever je de volgende producten en/of diensten op:
+
+- Performance test op de shares
+- Securitytest met virusscanner ClamAV
+- De backupscript en bewijs dagelijks uitvoeren
+- Documentatie van de wijzigingen van de rechten op de shares
+
+---
+
+Laten we beginnen met stap 1. Installeer de LAN_SpeedTest op je Windows VM en voer de performance test uit. Geef me een seintje wanneer je klaar bent of als je ergens hulp bij nodig hebt.
